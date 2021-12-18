@@ -1,5 +1,5 @@
 apply plugin: "com.android.application"
-
+// apply plugin: 'com.google.gms.google-services'
 import com.android.build.OutputFile
 
 /**
@@ -132,8 +132,8 @@ android {
 
     defaultConfig {
         applicationId "com.buyonic"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -190,6 +190,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
