@@ -49,6 +49,7 @@ class LoginOrCreateForm extends Component {
 
         // We set the returned token as the default authorization header
         axios.defaults.headers.common.Authorization = `Token ${token}`;
+        console.log(token)
         
         // Navigate to the home screen
         Actions.main();
@@ -60,23 +61,23 @@ class LoginOrCreateForm extends Component {
     const { formContainerStyle } = styles;
     if (this.props.create) {
       return (
-          <View style={formContainerStyle} >
+          <View  >
             <View  style={styles.inputView}>
             <TextInput
               placeholder="Name"
               autoCorrect={false}
               placeholderTextColor={'white'}
               onChangeText={this.onnameChange.bind(this)}
-              
+              style={styles.TextInput}
             />       
             </View>  
-            <View style={styles.inputView2} >
+            <View style={styles.inputView} >
             <TextInput
               placeholder="Address"
               autoCorrect={false}
               placeholderTextColor={'white'}
               onChangeText={this.onaddressChange.bind(this)}
-              
+              style={styles.TextInput}
             />       
             </View>  
           </View>
@@ -90,7 +91,9 @@ class LoginOrCreateForm extends Component {
     const buttonText = this.props.create ? 'Register' : 'Login';
 
     return (
+      <View style={styles.inputView2} >
       <Button title={buttonText}  onPress={this.handleRequest.bind(this)}/>
+      </View>
     );
   }
 
@@ -99,12 +102,17 @@ class LoginOrCreateForm extends Component {
     if (!this.props.create) {
      
       return (
-        <Text style={{ color: '#224957' }}>
+        <View style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        }} >
+        <Text  style={{ color: '#224957' }} >
           Don't have an account ?  
-          <Text style={{ color: '#224957' }} onPress={() => Actions.register()}>
-            {'   Register'}
+          <Text  onPress={() => Actions.register()}>
+            {' Register'}
           </Text>
         </Text>
+        </View>
       );
     }
   }
@@ -112,8 +120,7 @@ class LoginOrCreateForm extends Component {
   render() {
     const {
       formContainerStyle,
-      fieldStyle,
-      textInputStyle,
+
       buttonContainerStyle,
       accountCreateContainerStyle
     } = styles;
@@ -126,7 +133,7 @@ class LoginOrCreateForm extends Component {
         
           <View style={styles.inputView}>
          
-           <StatusBar style="auto" />
+           
             <TextInput
               placeholder="Email"
               placeholderTextColor={'white'}
@@ -164,15 +171,16 @@ class LoginOrCreateForm extends Component {
 const styles = StyleSheet.create({
   formContainerStyle: {
     flex: 1,
-    flexDirection: 'column',
+   
     alignItems: 'center',
     justifyContent: 'center',
     
   },
   image: {
-    marginBottom: 10,
-    height:75,
-    width:75,
+    marginBottom: 20,
+    height:100,
+    width:100,
+    marginTop: 150
    
   },
  
@@ -180,24 +188,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#224957",
    
     width: "70%",
-    height: 45,
-    marginBottom: 3,
+    height: 60,
+    marginBottom: 20,
  
     alignItems: "center",
   },
     inputView2: {
-    backgroundColor: "#224957",
-    
-    width: "70%",
-    height: 45,
-    marginBottom: 0,
- 
+  
+
     alignItems: "center",
   },
  
  
   TextInput: {
-    height: 75,
+    height: 100,
     flex: 1,
     padding: 10,
     
@@ -205,7 +209,7 @@ const styles = StyleSheet.create({
   },
 
   textInputStyle: {
-    flex: 1,
+   
     padding: 15
   },
   fieldStyle: {
@@ -223,12 +227,10 @@ const styles = StyleSheet.create({
   
   },
   buttonContainerStyle: {
-    flex: 1,
+   
     justifyContent: 'center',
-    padding: 25,
-    color: "#224957",
-
-
+    padding: 50,
+   
   },
   accountCreateContainerStyle: {
     padding: 25,

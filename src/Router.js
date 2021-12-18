@@ -6,24 +6,25 @@ import Register from './components/Register';
 import Home from './components/Home';
 
 
-const RouterComponent = () => {
+
+const RouterComponent = () => { 
+ 
   return (
     <Router>
       <Stack hideNavBar key="root">
         <Stack
           key="auth"
           type="reset"
-          navigationBarStyle={style.navBarStyle}
-          titleStyle={style.titleStyle}
+          
         >
           <Scene
-            title="Sign In"
+            title="BUYONIC"
             key="login"
             component={Login}
             initial
           />
           <Scene
-            title="Register"
+            title="BUYONIC"
             key="register"
             component={Register}
           />  
@@ -31,8 +32,7 @@ const RouterComponent = () => {
         <Stack
           key="main"
           type="reset"
-          navigationBarStyle={style.navBarStyle}
-          titleStyle={style.titleStyle}
+          
         >
           <Scene
             title="Home"
@@ -45,16 +45,5 @@ const RouterComponent = () => {
     </Router>
   );
 };
-
-
-const style = StyleSheet.create({
-  navBarStyle: {
-    // top: StatusBar.currentHeight
-  },
-  titleStyle: {
-    flexDirection: 'row',
-    width: 200
-  }
-});
 
 export default RouterComponent;
