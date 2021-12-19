@@ -2,8 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Router from './src/Router';
 import { baseURL } from './src/config';
-import AnimatedSplash from "react-native-animated-splash-screen";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { View, Text, StyleSheet } from 'react-native';
 
+
+const Stack = createNativeStackNavigator();
+const styles = StyleSheet.create({
+  headerTitle: {
+    fontSize: 20
+  }
+}); 
 
 export default class App extends Component {
   componentDidMount() {
@@ -26,9 +34,36 @@ export default class App extends Component {
       // >
       //  <Router />
       // </AnimatedSplash>
-      <Router />
-      
+<Router />
+    //   <CartProvider>
+    //   <NavigationContainer>
+     
+    //     <Stack.Navigator>
+        
+    //       <Stack.Screen name='Products' component={ProductsList} 
+    //       options={({ navigation }) => ({
+    //         title: 'Products',
+    //         headerTitleStyle: styles.headerTitle,
+    //         headerRight: () => <CartIcon navigation={navigation}/>
+    //       })}/>
+    //       <Stack.Screen name='ProductDetails' component={ProductDetails} 
+    //       options={({ navigation }) => ({
+    //         title: 'Product details',
+    //         headerTitleStyle: styles.headerTitle,
+    //         headerRight: () => <CartIcon navigation={navigation}/>,
+    //       })} />
+    //       <Stack.Screen name='Cart' component={Cart} 
+    //       options={({ navigation }) => ({
+    //         title: 'My cart',
+    //         headerTitleStyle: styles.headerTitle,
+    //         headerRight: () => <CartIcon navigation={navigation}/>,
+    //       })} />
+    //     </Stack.Navigator>
+    //   </NavigationContainer>
+    // </CartProvider>
      
     );
+    
   }
+  
 }

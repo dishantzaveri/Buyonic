@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, View, Text, TextInput, StyleSheet,Image,StatusBar } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import axios from 'axios';
+import LottieView from 'lottie-react-native';
+import animationData from './88985-contract-signing.json';
 
 
 class LoginOrCreateForm extends Component {
@@ -61,8 +63,8 @@ class LoginOrCreateForm extends Component {
     const { formContainerStyle } = styles;
     if (this.props.create) {
       return (
-          <View  >
-            <View  style={styles.inputView}>
+          <View  style={styles.inputView}>
+            <View  >
             <TextInput
               placeholder="Name"
               autoCorrect={false}
@@ -70,16 +72,9 @@ class LoginOrCreateForm extends Component {
               onChangeText={this.onnameChange.bind(this)}
               style={styles.TextInput}
             />       
+           
             </View>  
-            <View style={styles.inputView} >
-            <TextInput
-              placeholder="Address"
-              autoCorrect={false}
-              placeholderTextColor={'white'}
-              onChangeText={this.onaddressChange.bind(this)}
-              style={styles.TextInput}
-            />       
-            </View>  
+            
           </View>
           
           
@@ -109,7 +104,7 @@ class LoginOrCreateForm extends Component {
         <Text  style={{ color: '#224957' }} >
           Don't have an account ?  
           <Text  onPress={() => Actions.register()}>
-            {' Register'}
+            {'Register'}
           </Text>
         </Text>
         </View>
@@ -118,6 +113,14 @@ class LoginOrCreateForm extends Component {
   }
 
   render() {
+    const defaultOptions = {
+      loop: true,
+      autoplay: true,
+      animationData: animationData,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice',
+      },
+    };
     const {
       formContainerStyle,
 
@@ -126,11 +129,19 @@ class LoginOrCreateForm extends Component {
     } = styles;
 
     return (
+      
       <View style={{ flex: 1, backgroundColor: 'white' }}>
        
-        <View style={formContainerStyle}>
-        <Image style={styles.image} source={require("./common/group.png")} />
-        
+        <View  style={styles. formContainerStyle}>
+      
+        <LottieView
+          options={defaultOptions}
+         
+          source={require('./88985-contract-signing.json')}
+          style={styles.animation}
+          autoPlay
+         
+        />
           <View style={styles.inputView}>
          
            
@@ -177,34 +188,55 @@ const styles = StyleSheet.create({
     
   },
   image: {
-    marginBottom: 20,
+    marginBottom: 40,
     height:100,
     width:100,
-    marginTop: 150
+    marginTop: 20
    
   },
- 
+  animation: {
+    width: 150,
+    height: 150,
+    marginBottom:20,
+    alignItems:"center",
+     justifyContent:"center",
+     alignSelf:"center",
+    
+  },
   inputView: {
-    backgroundColor: "#224957",
+    backgroundColor: "black",
+  shadowColor:'blue',
+  shadowRadius:5,
+  shadowOpacity:10,
+  shadowOffset:{width:10,height:10},
    
     width: "70%",
     height: 60,
-    marginBottom: 20,
+    marginBottom: 15,
  
     alignItems: "center",
   },
     inputView2: {
-  
-
+      marginBottom: 15,
+    alignItems: "center",
+  },
+  inputView3: {
+    backgroundColor: "#224957",
+   
+    width: "70%",
+    height: 60,
+    marginBottom: 15,
+    marginTop:20,
+ 
     alignItems: "center",
   },
  
- 
   TextInput: {
     height: 100,
-    flex: 1,
+    justifyContent: 'center',
+    flex:1,
     padding: 10,
-    
+    alignItems: "center",
     color: "white",
   },
 
@@ -229,7 +261,7 @@ const styles = StyleSheet.create({
   buttonContainerStyle: {
    
     justifyContent: 'center',
-    padding: 50,
+    padding: 0,
    
   },
   accountCreateContainerStyle: {

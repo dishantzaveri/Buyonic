@@ -31,6 +31,22 @@ const Home = ({navigation, route}) => {
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUncw5PB5syw9BIoymTrwyOjAqRlTZC1Rkew&usqp=CAU',
   );
   const {colors} = useTheme();
+  handleRequest = () => {
+    // This request will only succeed if the Authorization header
+    // contains the API token
+    
+    axios
+      .get('/auth/logout/')
+      .then(response => {
+        axios.defaults.headers.common.Authorization = null;
+        Actions.auth()
+        })
+      .then(response => {
+        Actions.auth()
+      })
+      .catch(error =>  console.log(error));
+    };
+  
 
 
   const takePhotoFromCamera = () => {
@@ -58,22 +74,7 @@ const Home = ({navigation, route}) => {
       bs.current.snapTo(1);
     });
   };
-  handleRequest = () => {
-        // This request will only succeed if the Authorization header
-        // contains the API token
-        
-        axios
-          .get('/auth/logout/')
-          .then(response => {
-            axios.defaults.headers.common.Authorization = null;
-            Actions.auth()
-            })
-          .then(response => {
-            Actions.auth()
-          })
-          .catch(error =>  console.log(error));
-        };
-      
+ 
 
   renderInner = () => (
     <View style={styles.panel}>
@@ -171,70 +172,15 @@ const Home = ({navigation, route}) => {
         </View>
 
         <View style={styles.action}>
-          <FontAwesome name="user-o" color={colors.text} size={20} />
-          <TextInput
-            placeholder="First Name"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
-          <FontAwesome name="user-o" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Last Name"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
-          <Feather name="phone" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Phone"
-            placeholderTextColor="#666666"
-            keyboardType="number-pad"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
-          <FontAwesome name="envelope-o" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Email"
-            placeholderTextColor="#666666"
-            keyboardType="email-address"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View>
-        <TouchableOpacity style={styles.commandButton} onPress={() => {}}>
-          <Text style={styles.panelButtonTitle}>Submit</Text>
-        </TouchableOpacity>
        
-        <TouchableOpacity style={styles.commandButton} onPress={this.handleRequest.bind(this)}>
+    
+       <TouchableOpacity style={styles.commandButton} onPress={() => { navigation.navigate('ProductList' )}}>
+          <Text style={styles.panelButtonTitle}>Products</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.commandButton} onPress={handleRequest.bind(this)}>
           <Text style={styles.panelButtonTitle}>Logout</Text>
         </TouchableOpacity>
+    </View>
       </Animated.View>
     </View>
   );
@@ -256,22 +202,26 @@ const styles = StyleSheet.create({
   },
 
   commandButton: {
-    padding: 8,
+    padding: 15,
     borderRadius: 10,
     backgroundColor: '#FF6347',
     alignItems: 'center',
-    marginTop: 10,
+    marginLeft: 50,
+    marginTop:40,
+    flexDirection: 'row',
+    justifyContent:'center'
+
   },
   panel: {
     padding: 20,
     backgroundColor: '#FFFFFF',
     paddingTop: 20,
-    // borderTopLeftRadius: 20,
-    // borderTopRightRadius: 20,
-    // shadowColor: '#000000',
-    // shadowOffset: {width: 0, height: 0},
-    // shadowRadius: 5,
-    // shadowOpacity: 0.4,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 0},
+    shadowRadius: 5,
+    shadowOpacity: 0.4,
   },
   header: {
     backgroundColor: '#FFFFFF',
