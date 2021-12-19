@@ -4,6 +4,12 @@ from accounts.models import MyUser
 class Category(models.Model):
     category = models.CharField(max_length = 25)
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.category
+
 class Product(models.Model):
     manufacturer = models.ForeignKey(MyUser, on_delete = models.CASCADE)
     category = models.ForeignKey(Category,on_delete = models.CASCADE)
@@ -19,4 +25,33 @@ class Product(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['cost']
+        ordering = ['trend']
+
+class ClientOrder(models.Model):
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default = 1)
+    total_cost = models.IntegerField(default = 0)
+    shipping_charge = models.IntegerField(default = 50)
+    confirmed = models.BooleanField(default = False)
+
+    def __str__(self):
+        return f"{self.product} : {self.quantity}"
+
+    def get_total_cost(self):
+        total_cost = int(self.quantity) * int(self.product.cost) + self.shipping_charge
+        if total_cost >= int(self.user.refund_balance):
+            total_cost -= int(self.user.refund_balance)
+            self.user.refund_balance =0
+        return int(total_cost)
+
+class Notify(models.Model):
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    below = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.product} < {self.below}"
+
+    class Meta:
+        verbose_name_plural = "Notifications"
