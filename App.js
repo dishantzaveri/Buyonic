@@ -12,6 +12,7 @@ import { Cart } from './src/screens/Cart.js';
 import { CartIcon } from './src/components/CartIcon.js';
 import { CartProvider } from './src/CartContext.js';
 import AnimatedSplash from 'react-native-animated-splash-screen';
+import Splash from './src/screens/splash';
 const Stack = createNativeStackNavigator();
 
 
@@ -33,23 +34,11 @@ export default class App extends Component {
       
 
       <CartProvider>
-      <NavigationContainer>
+      <NavigationContainer >
      
-        <Stack.Navigator>
-         <AnimatedSplash
-        translucent={true}
-        isLoaded={this.state.isLoaded}
-        logoImage={require("./src/components/common/group.png")}
-        backgroundColor={"#262626"}
-        logoHeight={150}
-        logoWidth={150}
-        backgroundColor='white'
-        initial
-        
-      >
-      </AnimatedSplash>
-        
-          <Stack.Screen name='Products' component={ProductsList} 
+        <Stack.Navigator >
+        <Stack.Screen name='splash' component={Splash}  hideNavBar key="root">  </Stack.Screen>
+           <Stack.Screen name='Products' component={ProductsList} 
           options={({ navigation }) => ({
             title: 'Products',
             headerTitleStyle: styles.headerTitle,
@@ -66,7 +55,8 @@ export default class App extends Component {
             title: 'My cart',
             headerTitleStyle: styles.headerTitle,
             headerRight: () => <CartIcon navigation={navigation}/>,
-          })} />
+          })}
+           />
         </Stack.Navigator>
       </NavigationContainer>
     </CartProvider>
