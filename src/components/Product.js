@@ -24,14 +24,16 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     shadowColor: 'black',
     shadowOffset: {
-      height: 0,
-      width: 0,
+      height: 10,
+      width: 10,
     },
     elevation: 1,
-    marginVertical: 20,
+    marginVertical: 10,
+    flex:2,
+    margin:5
   },
   thumb: {
-    height: 260,
+    height: 150,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     width: '100%',
@@ -40,12 +42,12 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   name: {
-    fontSize: 22,
+    fontSize: 17,
     fontWeight: 'bold',
   },
   price: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
-    marginBottom: 8,
+    marginBottom: 4,
   },
 });

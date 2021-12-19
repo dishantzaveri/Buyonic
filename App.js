@@ -3,13 +3,22 @@ import axios from 'axios';
 import Router from './src/Router';
 import { baseURL } from './src/config';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';;
+import { NavigationContainer } from '@react-navigation/native';
 
-
+import { ProductsList } from './src/screens/ProductsList.js';
+import { ProductDetails } from './src/screens/ProductDetails.js';
+import { Cart } from './src/screens/Cart.js';
+import { CartIcon } from './src/components/CartIcon.js';
+import { CartProvider } from './src/CartContext.js';
+import AnimatedSplash from 'react-native-animated-splash-screen';
 const Stack = createNativeStackNavigator();
+
+
+// const Stack = createNativeStackNavigator();
 const styles = StyleSheet.create({
   headerTitle: {
-    fontSize: 20
+    fontSize: 25
   }
 }); 
 
@@ -21,49 +30,51 @@ export default class App extends Component {
 
   render() {
     return (
-      // <AnimatedSplash
-      //   translucent={true}
-      //   isLoaded={this.state.isLoaded}
-      //   logoImage={require("./src/components/common/group.png")}
-      //   backgroundColor={"#262626"}
-      //   logoHeight={150}
-      //   logoWidth={150}
-      //   backgroundColor='white'
-        
-        
-      // >
-      //  <Router />
-      // </AnimatedSplash>
-<Router />
-    //   <CartProvider>
-    //   <NavigationContainer>
+      
+
+      <CartProvider>
+      <NavigationContainer>
      
-    //     <Stack.Navigator>
+        <Stack.Navigator>
+         <AnimatedSplash
+        translucent={true}
+        isLoaded={this.state.isLoaded}
+        logoImage={require("./src/components/common/group.png")}
+        backgroundColor={"#262626"}
+        logoHeight={150}
+        logoWidth={150}
+        backgroundColor='white'
+        initial
         
-    //       <Stack.Screen name='Products' component={ProductsList} 
-    //       options={({ navigation }) => ({
-    //         title: 'Products',
-    //         headerTitleStyle: styles.headerTitle,
-    //         headerRight: () => <CartIcon navigation={navigation}/>
-    //       })}/>
-    //       <Stack.Screen name='ProductDetails' component={ProductDetails} 
-    //       options={({ navigation }) => ({
-    //         title: 'Product details',
-    //         headerTitleStyle: styles.headerTitle,
-    //         headerRight: () => <CartIcon navigation={navigation}/>,
-    //       })} />
-    //       <Stack.Screen name='Cart' component={Cart} 
-    //       options={({ navigation }) => ({
-    //         title: 'My cart',
-    //         headerTitleStyle: styles.headerTitle,
-    //         headerRight: () => <CartIcon navigation={navigation}/>,
-    //       })} />
-    //     </Stack.Navigator>
-    //   </NavigationContainer>
-    // </CartProvider>
+      >
+      </AnimatedSplash>
+        
+          <Stack.Screen name='Products' component={ProductsList} 
+          options={({ navigation }) => ({
+            title: 'Products',
+            headerTitleStyle: styles.headerTitle,
+            headerRight: () => <CartIcon navigation={navigation}/>
+          })}/>
+          <Stack.Screen name='ProductDetails' component={ProductDetails} 
+          options={({ navigation }) => ({
+            title: 'Product details',
+            headerTitleStyle: styles.headerTitle,
+            headerRight: () => <CartIcon navigation={navigation}/>,
+          })} />
+          <Stack.Screen name='Cart' component={Cart} 
+          options={({ navigation }) => ({
+            title: 'My cart',
+            headerTitleStyle: styles.headerTitle,
+            headerRight: () => <CartIcon navigation={navigation}/>,
+          })} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </CartProvider>
      
     );
     
   }
   
 }
+
+

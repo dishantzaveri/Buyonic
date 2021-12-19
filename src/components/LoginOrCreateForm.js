@@ -104,7 +104,7 @@ class LoginOrCreateForm extends Component {
         <Text  style={{ color: '#224957' }} >
           Don't have an account ?  
           <Text  onPress={() => Actions.register()}>
-            {'Register'}
+            {'  Register'}
           </Text>
         </Text>
         </View>

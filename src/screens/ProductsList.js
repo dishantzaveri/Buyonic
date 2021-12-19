@@ -26,10 +26,12 @@ export function ProductsList ({navigation}) {
   
   return (
     <FlatList
+     
       style={styles.productsList}
       contentContainerStyle={styles.productsListContainer}
       keyExtractor={(item) => item.id.toString()}
       data={products}
+      numColumns={2}
       renderItem={renderProduct}
     />
   );
@@ -37,10 +39,12 @@ export function ProductsList ({navigation}) {
 
 const styles = StyleSheet.create({
   productsList: {
-    backgroundColor: '#eeeeee',
+    backgroundColor: 'black',
+    
   },
   productsListContainer: {
-    backgroundColor: '#eeeeee',
+    backgroundColor: 'black',
+    
     paddingVertical: 8,
     marginHorizontal: 8,
   },
