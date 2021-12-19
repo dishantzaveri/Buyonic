@@ -1,30 +1,42 @@
-import React from 'react'
+import { useContext } from 'react'
+import { GlobalContext } from '../context/GlobalContext'
 import logo from '../utils/logo.svg';
 import {
   Link
 } from 'react-router-dom'
+import { Navbar } from '../components/Navbar';
 
 export const Home = () => {
+
+  const { token } = useContext(GlobalContext)
+
   return (
-    <div className="text-center">
-      <header className="bg-[#282c34] min-h-screen flex flex-col items-center justify-center text-[50px] text-white">
-        <img src={logo} className="h-[40vmin]" alt="logo" />
+    <div className="bg-gray-800 min-h-screen">
+      <Navbar />
+      <div className="flex flex-col items-center justify-center text-[50px] text-white h-full w-full">
+        <img src={logo} className="h-64" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Token is {token ? token : ''}
         </p>
         <Link
-          className="text-[#61dafb] animate-bounce"
-          to="login"
+          className="text-green-400 animate-bounce"
+          to="/login"
         >
           Login
         </Link>
         <Link
-          className="text-[#61dafb] animate-bounce"
-          to="login-sample"
+          className="text-green-400 animate-bounce"
+          to="/register"
         >
-          Login Sample
+          Register
         </Link>
-      </header>
+        <Link
+          className="text-green-400 animate-bounce"
+          to="/register/verify"
+        >
+          Verfiy
+        </Link>
+      </div>
     </div>
   )
 }
