@@ -16,14 +16,14 @@ export function CartProvider(props) {
               id,
               qty: 1,
               product,
-              totalPrice: product.price 
+              totalPrice: product.cost
           }];
       }
       else { 
           return prevItems.map((item) => {
             if(item.id == id) {
               item.qty++;
-              item.totalPrice += product.price;
+              item.totalPrice += product.cost;
             }
             return item;
           });

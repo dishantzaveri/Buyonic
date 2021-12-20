@@ -1,16 +1,22 @@
 import React, {useEffect, useState, useContext} from 'react';
-import {
-  Text, 
-  Image, 
-  View, 
-  ScrollView, 
-  SafeAreaView, 
-  Button, 
+import { 
   StyleSheet
   } from 'react-native';
 
 import { getProduct } from '../services/ProductsService.js';
 import { CartContext } from '../CartContext';
+import {
+  Container,
+  ProductCard,
+  Image,
+  Info,
+  Text,
+  Name,
+  Brand,
+  Price,
+  Button,
+  ButtonText,
+} from './styles';
 
 export function ProductDetails({route}) {
   const { productId } = route.params;
@@ -27,24 +33,41 @@ export function ProductDetails({route}) {
   }
   
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <Image
-          style={styles.image}
-          source={{uri:product.image}}
-        />
-        <View style={styles.infoContainer}>
-          <Text style={styles.name}>{product.name}</Text>
-          <Text style={styles.price}>$ {product.price}</Text>
-          <Text style={styles.description}>{product.description}</Text>   
-          <Text style={styles.production_state}>{product.production_state}</Text>
-            <Button
-            onPress={onAddToCart}
-            title="Add to cart"
-            />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    // <SafeAreaView>
+    //   <ScrollView>
+    //     <Image
+    //       style={styles.image}
+    //       source={{uri:product.image}}
+    //     />
+    //     <View style={styles.infoContainer}>
+    //       <Text style={styles.name}>{product.name}</Text>
+    //       <Text style={styles.price}>$ {product.price}</Text>
+    //       <Text style={styles.description}>{product.description}</Text>   
+    //       <Text style={styles.production_state}>{product.production_state}</Text>
+    //         <Button
+    //         onPress={onAddToCart}
+    //         title="Add to cart"
+    //         />
+    //     </View>
+    //   </ScrollView>
+    // </SafeAreaView>
+    <Container>
+    <ProductCard>
+      <Image source={{ uri: product.photo }} />
+      <Info>
+        <Text>
+          <Name>{product.name}</Name>
+          <Brand>{product.description}</Brand>
+        </Text>
+        <Price>{`$ ${product.cost}`}</Price>
+      </Info>
+      <Button
+        onPress={onAddToCart}
+      >
+        <ButtonText>Add to cart</ButtonText>
+      </Button>
+    </ProductCard>
+  </Container>
   );
 }
 

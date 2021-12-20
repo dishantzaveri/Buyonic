@@ -41,8 +41,7 @@ export default class Home2 extends Component {
          <Stack.Screen name='Home' component={Home}  options={{ headerShown: false }}  />
            <Stack.Screen name='ProductsList' component={ProductsList}  options={{ headerShown: false }}  
           options={({ navigation }) => ({
-            title: 'Products',
-           
+            title: '      Products' ,
             headerTitleStyle: styles.headerTitle,
             headerRight: () => <CartIcon navigation={navigation}/>
           })}/>

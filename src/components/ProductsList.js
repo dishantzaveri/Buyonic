@@ -39,11 +39,11 @@ export function ProductsList ({navigation}) {
 
 const styles = StyleSheet.create({
   productsList: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     
   },
   productsListContainer: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     
     paddingVertical: 8,
     marginHorizontal: 8,

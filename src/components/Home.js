@@ -172,7 +172,7 @@ const Home = ({navigation, route}) => {
             
 
                 <View style={styles.infoContainer}>
-                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Dishant</Text>
+                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Dishant Zaveri</Text>
                     <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Client</Text>
                 </View>
 
@@ -194,13 +194,13 @@ const Home = ({navigation, route}) => {
                 <View style={{ marginTop: 20 }}>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("./group.png")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("./cake-102.jpg")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("./group.png")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("./headset-100.jpg")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("./group.png")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("./car-101.jpg")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                     </ScrollView>
                    
