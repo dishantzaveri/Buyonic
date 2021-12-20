@@ -1,124 +1,155 @@
-import { useContext, useState } from 'react'
-import { 
-  CardActionArea,
-  Card,
-  CardContent,
-  CardActions,
-} from '@mui/material';
+import axios from 'axios';
+import { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { Navbar } from '../components/Navbar';
 import { GlobalContext } from '../context/GlobalContext';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-export const Product = ({ product }) => {
+export const ProductDetail = () => {
+  let { productId } = useParams();
 
-  const { token } = useContext(GlobalContext)
+  const { token } = useContext(GlobalContext)  
 
+  const [product, setProduct] = useState()
+  
   const [showModal1, setShowModal1] = useState(false);
 
   const [showModal2, setShowModal2] = useState(false);
 
   const [quantity, setQuantity] = useState(1)
 
-  const [price, setPrice] = useState(product.cost)
+  const [price, setPrice] = useState()
 
   const addToCart = () => {
-    let data = new FormData();
-    data.append('quantity', quantity);
-
-    let config = {
-      method: 'post',
-      url: 'https://buyonic.herokuapp.com/product/order/' + product.id,
-      headers: { 
-        'Authorization': 'Token ' + token, 
-      },
-      data : data
-    };
-
-    axios(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-    setShowModal1(false)
+    if (product) {
+      let data = new FormData();
+      data.append('quantity', quantity);
+  
+      let config = {
+        method: 'post',
+        url: 'https://buyonic.herokuapp.com/product/order/' + product.id,
+        headers: { 
+          'Authorization': 'Token ' + token, 
+        },
+        data : data
+      };
+  
+      axios(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      setShowModal1(false)
+    }
   }
 
   const addToFav = () => {
-    let data = new FormData();
-    data.append('below', price);
-
+    if (product) {
+      let data = new FormData();
+      data.append('below', price);
+  
+      let config = {
+        method: 'post',
+        url: 'https://buyonic.herokuapp.com/product/notify/' + product.id,
+        headers: { 
+          'Authorization': 'Token ' + token,
+        },
+        data : data
+      };
+  
+      axios(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      setShowModal2(false)
+    }
+  }
+  
+  const getProducts = () => {
     let config = {
-      method: 'post',
-      url: 'https://buyonic.herokuapp.com/product/notify/' + product.id,
+      method: 'get',
+      url: 'http://buyonic.herokuapp.com/product/details/' + productId,
       headers: { 
-        'Authorization': 'Token ' + token,
-      },
-      data : data
+        'Authorization': 'Token ' + token
+      }
     };
-
+    
     axios(config)
     .then((response) => {
       console.log(JSON.stringify(response.data));
+      setProduct(response.data)
     })
     .catch((error) => {
       console.log(error);
     });
-    setShowModal2(false)
   }
 
+  useEffect(() => {
+    getProducts()
+    if (product) {
+      setPrice(product.cost)
+    }
+  }, [])
+
   return (
-    <div className="">
-      {product ? 
-        <Card sx={{ width: '100%', background: '#111827', color: 'white' }}>
-          <CardActionArea>
-            <Link to={`/details/${product.id}`} key={product.id}>
-              <div className='bg-gray-500 flex justify-center'>
-                <img 
-                  src={product.photo && 'https://buyonic.herokuapp.com' + product.photo}
-                  alt='' className='h-44'
-                />
+    <div className="bg-gray-800 min-h-screen">
+      <Navbar />
+      {product && 
+        <div className='px-64 py-16 w-full h-full'>
+          <div className='w-full min-h-[600px] grid grid-cols-2 items-center justify-center gap-16 bg-gray-900 rounded-lg shadow-lg px-32 py-12'>
+            <div className='col-1 flex'>
+              <img className='shadow-lg max-h-80'
+              src={product.photo ? 'https://buyonic.herokuapp.com' + product.photo : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.squareshot.co%2Fpost%2F17-types-of-product-photography-your-online-business-needs-to-know&psig=AOvVaw2iIFepP0c0t0_SFKWGNsC3&ust=1640070902850000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPDZiLrq8fQCFQAAAAAdAAAAABAV'} alt=''/>
+            </div>
+            <div className='col-1 text-gray-200 flex flex-col justify-center space-y-2'>
+              <div className='inline-flex items-end justify-between'>
+                <h1 className='text-6xl font-bold'>
+                  {product ? product.name : ''}
+                </h1>
+                <h1 className='text-xl font-semibold'>
+                  {product.stock_status ? <h1 className='text-green-400'>(in stock)</h1> : <h1 className='text-red-600'>(out of stock)</h1>}
+                </h1>
               </div>
-              <CardContent>
-                <div className='px-4 min-h-[228px]'>
-                  <h1 className='text-4xl font-bold text-gray-200'>
-                    {product.name && product.name}
-                  </h1>
-                  <h1 className=' text-sm pb-1 text-gray-400'>
-                    by {product.manufacturer.name && product.manufacturer.name}
-                  </h1>
-                  <h1 className='pb-1'>
-                    Info: <span className='text-green-400'>{product.description && product.description}</span>
-                  </h1>
-                  <h1 className='pb-1'>
-                    Sold: <span className='text-green-400'>{product.trend && product.trend}</span>
-                  </h1>
-                  <h1 className='text-4xl font-bold text-green-400'>
-                    ₹ {product.cost && product.cost}
-                  </h1>
-                  <div className='inline-block bg-green-400 px-3 py-1 rounded-full text-gray-900 mt-3'>
-                    <h1>{product.category.category && product.category.category}</h1>
-                  </div>
+              <h1 className='text-xl font-semibold'>
+                Manufactured by <span className='text-green-400'>{product ? product.manufacturer.name : ''}</span>
+              </h1>
+              <h1 className='text-xl font-semibold'>
+                Description: <span className='text-green-400'>{product ? product.description : ''}</span>
+              </h1>
+              <h1 className='text-xl font-semibold'>
+                Category: <span className='text-green-400'>{product ? product.category.category : ''}</span>
+              </h1>
+              <h1 className='text-xl font-semibold'>
+                Number of orders placed:  <span className='text-green-400'>{product ? product.trend : ''}</span>
+              </h1>
+              <h1 className='text-xl font-semibold'>
+                Manufactured at:  <span className='text-green-400'>{product ? product.production_state : ''}</span>
+              </h1>
+              <h1 className='text-xl font-semibold'>
+                Manufactured on:  <span className='text-green-400'>{product ? product.created_on : ''}</span>
+              </h1>
+              <h1 className='text-4xl font-bold text-green-400'>
+                ₹ {product.cost && product.cost}
+              </h1>
+              <div className='flex justify-between items-center pt-2'>
+                <div className='inline-flex items-center rounded-xl shadow-lg shadow-green-400/20 hover:shadow-green-400/40 bg-green-400 px-6 py-3 text-gray-800' onClick={() => setShowModal1(true)}>
+                  <ShoppingCartIcon />
+                  <h1 className='font-semibold text-lg pl-1'>Add to Cart</h1>
                 </div>
-              </CardContent>
-            </Link>
-          </CardActionArea>
-          <CardActions disableSpacing>
-            <div className='flex justify-between items-center pb-4'>
-              <div className='inline-flex items-center rounded-xl shadow-lg shadow-green-400/20 hover:shadow-green-400/40 bg-green-400 px-3 py-2 text-gray-800 ml-6' onClick={() => setShowModal1(true)} >
-                <ShoppingCartIcon />
-                <h1 className='font-semibold text-lg pl-1'>Add to Cart</h1>
-              </div>
-              <div className='inline-flex items-center rounded-xl shadow-lg hover:shadow-green-400/20 bg-gray-800 px-3 py-2 text-green-400 hover:animate-bounce ml-12' onClick={() => setShowModal2(true)} >
-                <FavoriteBorderIcon />
-                <h1 className='font-semibold text-lg pl-1'>Watch</h1>
+                <div className='inline-flex items-center rounded-xl shadow-lg hover:shadow-green-400/20 bg-gray-800 px-8 py-3 text-green-400 hover:animate-bounce' onClick={() => setShowModal2(true)}>
+                  <FavoriteBorderIcon />
+                  <h1 className='font-semibold text-lg pl-1'>Watch</h1>
+                </div>
               </div>
             </div>
-          </CardActions>
-        </Card> :
-        <div></div>
+          </div>
+        </div>
       }
       {showModal1 ? (
         <>

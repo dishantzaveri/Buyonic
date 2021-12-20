@@ -11,7 +11,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export const Product = ({ product }) => {
+export const OrderProduct = ({ product }) => {
 
   const { token } = useContext(GlobalContext)
 

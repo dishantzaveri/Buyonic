@@ -30,16 +30,20 @@ export const Navbar = () => {
         </div>
       </div>
       <Stack direction='row' spacing={4} >
-        <IconButton>
-          <Badge badgeContent={4} color="primary">
-            <FavoriteIcon />
-          </Badge>
-        </IconButton>
-        <IconButton>
-          <Badge badgeContent={4} color="primary">
-            <ShoppingCartIcon />
-          </Badge>
-        </IconButton>
+        <Link to='/profile/my-wishlist'>
+          <IconButton>
+            <Badge badgeContent={4} color="primary">
+              <FavoriteIcon />
+            </Badge>
+          </IconButton>
+        </Link>
+        <Link to='/profile/my-cart'>
+          <IconButton>
+            <Badge badgeContent={4} color="primary">
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
+        </Link>
         <Link to='/profile'>
           <Avatar className='cursor-pointer' sx={{ bgcolor: grey[800] }}></Avatar>
         </Link>
