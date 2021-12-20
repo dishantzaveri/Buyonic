@@ -3,6 +3,7 @@ import {
   Route,
   Routes
 } from 'react-router-dom'
+import { EditProfile } from './pages/EditProfile';
 import { Home } from './pages/Home';
 import { LandingPage } from './pages/LandingPage';
 import { Login } from './pages/Login';
@@ -20,6 +21,7 @@ function App() {
         <Route path='/register' element={<Register />}/>
         <Route path='/register/verify' element={<Verify />}/>
         <Route path='/profile' element={<Profile />}/>
+        <Route path='/profile/edit' element={<EditProfile />}/>
         <Route
           path="*"
           element={

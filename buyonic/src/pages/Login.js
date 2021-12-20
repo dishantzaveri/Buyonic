@@ -24,10 +24,11 @@ export const Login = () => {
     
     data.append('email', userId);
     data.append('password', password);
+    console.log(userId, password)
 
     let config = {
       method: 'post',
-      url: 'https://buyoni.herokuapp.com/auth/login/',
+      url: 'https://buyonic.herokuapp.com/auth/login/',
       headers: {},
       data : data
     };
@@ -39,7 +40,7 @@ export const Login = () => {
       if (remember) {
         localStorage.setItem('token', JSON.stringify(response.data.token))
       }
-      navigate('/')
+      navigate('/home')
     })
     .catch((error) => {
       console.log(error);

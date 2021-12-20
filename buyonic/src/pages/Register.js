@@ -29,7 +29,7 @@ export const Register = () => {
   const regexEmail = /^((([a-zA-Z0-9\.]+)@([a-z]+)\.(([a-z]{2,5}\.[a-z]{2,3})|([a-z]{2,5})))|(\d{10}))/g
   const regexName = /([A-Za-z]){2,32}/g
   const regexPhone = /([0-9]){10}/g
-  const regexAddress = /([A-Za-z0-9\.\,\/]){5,32}/g
+  const regexAddress = /([A-Za-z0-9\.\,\/\:\-]){5,32}/g
   const regexCity = /([A-Za-z]){3,32}/g
   const regexState = /([A-Za-z]){3,32}/g
   const regexPassword = /([A-Za-z0-9]){8,32}/g
@@ -125,13 +125,13 @@ export const Register = () => {
       data.append('password', values.password1);
       data.append('name', values.name);
       data.append('address', values.address);
-      data.append('contact', values.phone);
+      data.append('contact', +values.phone);
       data.append('city', values.city);
       data.append('state', values.state);
 
       let config = {
         method: 'post',
-        url: 'https://buyoni.herokuapp.com/auth/register/',
+        url: 'https://buyonic.herokuapp.com/auth/register/',
         headers: {},
         data : data
       };
@@ -139,6 +139,7 @@ export const Register = () => {
       axios(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
+        localStorage.setItem('token', JSON.stringify(response.data.token))
         setToken(response.data.token);
         navigate('/register/verify')
       })
@@ -255,7 +256,6 @@ export const Register = () => {
                 <h1>&ensp;</h1>
               </div>
               <div className='flex flex-col w-full'>
-                {/* <h1 className='cursor-pointer text-lg text-green-400' onClick={() => reset()}>&larr; Reset</h1> */}
                 <button 
                   className='w-full py-3 bg-green-400 rounded-lg shadow-lg shadow-green-400/30 hover:shadow-green-400/50'
                   onClick={() => register()}

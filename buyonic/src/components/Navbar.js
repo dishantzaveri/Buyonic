@@ -41,7 +41,7 @@ export const Navbar = () => {
           </Badge>
         </IconButton>
         <Link to='/profile'>
-          <Avatar className='cursor-pointer' sx={{ bgcolor: grey[800] }}>M</Avatar>
+          <Avatar className='cursor-pointer' sx={{ bgcolor: grey[800] }}></Avatar>
         </Link>
       </Stack>
     </div>
