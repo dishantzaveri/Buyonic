@@ -31,12 +31,13 @@ export function ProductDetails({route}) {
       <ScrollView>
         <Image
           style={styles.image}
-          source={product.image}
+          source={{uri:product.image}}
         />
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{product.name}</Text>
           <Text style={styles.price}>$ {product.price}</Text>
-          <Text style={styles.description}>{product.description}</Text>
+          <Text style={styles.description}>{product.description}</Text>   
+          <Text style={styles.production_state}>{product.production_state}</Text>
             <Button
             onPress={onAddToCart}
             title="Add to cart"
@@ -75,12 +76,18 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 16,
     fontWeight: '600',
-    marginBottom: 8,
+    
   },
   description: {
     fontSize: 16,
     fontWeight: '400',
     color: '#787878',
-    marginBottom: 16,
+
+  },
+  production_state: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#787878',
+    marginBottom:20,
   },
 });

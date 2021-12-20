@@ -1,13 +1,10 @@
 import React from 'react';
 import {Text, Image, View, StyleSheet, TouchableOpacity} from 'react-native';
 
-export function Product({name, price, image, onPress}) {
+export function Product({name, price, image, description, stock_status, created_on, trend, production_state, onPress}) {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
-      <Image
-        style={styles.thumb}
-        source={image}
-      />
+       <Image source={{uri: image}} style={styles.thumb} />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.price}>$ {price}</Text>
@@ -18,7 +15,7 @@ export function Product({name, price, image, onPress}) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     borderRadius: 16,
     shadowOpacity: 0.2,
     shadowRadius: 4,
@@ -44,10 +41,12 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 17,
     fontWeight: 'bold',
+    color:'white'
   },
   price: {
     fontSize: 14,
     fontWeight: '600',
     marginBottom: 4,
+    color:'white'
   },
 });

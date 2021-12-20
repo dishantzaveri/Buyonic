@@ -12,16 +12,14 @@ import {
   TextInput,
   StyleSheet,
   Button,
+ SafeAreaView, Image, ScrollView 
 } from 'react-native';
 
 import {useTheme} from 'react-native-paper';
-
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Feather from 'react-native-vector-icons/Feather';
 
 import BottomSheet from 'reanimated-bottom-sheet';
-import Animated, {Value} from 'react-native-reanimated';
+import Animated, {color, Value} from 'react-native-reanimated';
 
 import ImagePicker from 'react-native-image-crop-picker';
 
@@ -166,12 +164,49 @@ const Home = ({navigation, route}) => {
               </ImageBackground>
             </View>
           </TouchableOpacity>
-          <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
-            Welcome 
-          </Text>
-        </View>
 
-        <View style={styles.action}>
+        </View>
+      </Animated.View>
+      <SafeAreaView style={styles.container}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+            
+
+                <View style={styles.infoContainer}>
+                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Dishant</Text>
+                    <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Client</Text>
+                </View>
+
+                <View style={styles.statsContainer}>
+                    <View style={styles.statsBox}>
+                        <Text style={[styles.text, { fontSize: 24 }]}>7</Text>
+                        <Text style={[styles.text, styles.subText]}>Products</Text>
+                    </View>
+                    <View style={[styles.statsBox, { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 }]}>
+                        <Text style={[styles.text, { fontSize: 24 }]}>4</Text>
+                        <Text style={[styles.text, styles.subText]}>Sold</Text>
+                    </View>
+                    <View style={styles.statsBox}>
+                        <Text style={[styles.text, { fontSize: 24 }]}>3</Text>
+                        <Text style={[styles.text, styles.subText]}>Left</Text>
+                    </View>
+                </View>
+
+                <View style={{ marginTop: 20 }}>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        <View style={styles.mediaImageContainer}>
+                            <Image source={require("./group.png")} style={styles.image} resizeMode="cover"></Image>
+                        </View>
+                        <View style={styles.mediaImageContainer}>
+                            <Image source={require("./group.png")} style={styles.image} resizeMode="cover"></Image>
+                        </View>
+                        <View style={styles.mediaImageContainer}>
+                            <Image source={require("./group.png")} style={styles.image} resizeMode="cover"></Image>
+                        </View>
+                    </ScrollView>
+                   
+                </View>
+            
+                <View style={styles.action}>
        
     
        <TouchableOpacity style={styles.commandButton} onPress={() => { navigation.navigate('splash' )}}>
@@ -180,8 +215,9 @@ const Home = ({navigation, route}) => {
         <TouchableOpacity style={styles.commandButton} onPress={handleRequest.bind(this)}>
           <Text style={styles.panelButtonTitle}>Logout</Text>
         </TouchableOpacity>
-    </View>
-      </Animated.View>
+    </View> 
+            </ScrollView>
+        </SafeAreaView>
     </View>
   );
 };
@@ -191,6 +227,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "white"
   },
   
 
@@ -204,11 +241,11 @@ const styles = StyleSheet.create({
   commandButton: {
     padding: 15,
     borderRadius: 10,
-    backgroundColor: '#FF6347',
+    backgroundColor: 'black',
     alignItems: 'center',
-    marginLeft: 50,
-    marginTop:40,
-    flexDirection: 'row',
+    marginHorizontal:60,
+    marginTop:20,
+    flexDirection: 'column',
     justifyContent:'center'
 
   },
@@ -267,11 +304,10 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   action: {
-    flexDirection: 'row',
+    
     marginTop: 10,
     marginBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
+  
     paddingBottom: 5,
   },
   actionError: {
@@ -287,6 +323,10 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     color: '#05375a',
   },
+  text: {
+    fontFamily: "HelveticaNeue",
+    color: "#52575D"
+},
   button: {
     backgroundColor: '#0782F9',
     width: '60%',
@@ -311,4 +351,116 @@ const styles = StyleSheet.create({
   userBtnTxt: {
     color: '#2e64e5',
   },
+  image: {
+    flex: 1,
+    height: 10,
+    width: undefined
+},
+titleBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 24,
+    marginHorizontal: 16
+},
+subText: {
+    fontSize: 12,
+    color: "#AEB5BC",
+    textTransform: "uppercase",
+    fontWeight: "500"
+},
+profileImage: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    overflow: "hidden"
+},
+dm: {
+    backgroundColor: "#41444B",
+    position: "absolute",
+    top: 20,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center"
+},
+active: {
+    backgroundColor: "#34FFB9",
+    position: "absolute",
+    bottom: 28,
+    left: 10,
+    padding: 4,
+    height: 20,
+    width: 20,
+    borderRadius: 10
+},
+add: {
+    backgroundColor: "#41444B",
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    alignItems: "center",
+    justifyContent: "center"
+},
+infoContainer: {
+    alignSelf: "center",
+    alignItems: "center",
+    marginTop: 10
+},
+statsContainer: {
+    flexDirection: "row",
+    alignSelf: "center",
+    marginTop: 32
+},
+statsBox: {
+    alignItems: "center",
+    flex: 1,
+    color:'white'
+},
+mediaImageContainer: {
+    width: 150,
+    height: 150,
+    borderRadius: 12,
+    overflow: "hidden",
+    marginHorizontal: 20
+},
+mediaCount: {
+    backgroundColor: "black",
+    position: "absolute",
+    top: "50%",
+    marginTop: -50,
+    marginLeft: 30,
+    width: 70,
+    height: 70,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 12,
+    shadowColor: "rgba(0, 0, 0, 0.38)",
+    shadowOffset: { width: 0, height: 10 },
+    shadowRadius: 20,
+    shadowOpacity: 1
+},
+recent: {
+    marginLeft: 78,
+    marginTop: 32,
+    marginBottom: 6,
+    fontSize: 10
+},
+recentItem: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    marginBottom: 16
+},
+activityIndicator: {
+    backgroundColor: "#CABFAB",
+    padding: 4,
+    height: 12,
+    width: 12,
+    borderRadius: 6,
+    marginTop: 3,
+    marginRight: 20
+}
 });
