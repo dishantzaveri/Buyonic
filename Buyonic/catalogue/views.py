@@ -3,8 +3,6 @@
 import environ
 from rest_framework.decorators import api_view,permission_classes
 from . import Checksum
-import requests
-import json
 
 from accounts.models import MyUser
 from .models import Product,ClientOrder,Notify,Transaction
@@ -38,6 +36,7 @@ class ProductList(GenericAPIView):
     serializer_class = ProductSerializer
     pagination_class = PageNumberPagination
     permission_classes = [IsAuthenticated,]
+    queryset = Product.objects.all()
 
     def get(self,request):
         product = Product.objects.all()
@@ -47,6 +46,7 @@ class ProductList(GenericAPIView):
 class ProductDetails(GenericAPIView):
     serializer_class = ProductSerializer
     permission_classes = [IsAuthenticated,]
+    queryset = Product.objects.all()
 
     def get(self,request,pk):
         product = Product.objects.get(id = pk)
@@ -61,6 +61,7 @@ class OrderForm(GenericAPIView):
 
     serializer_class = ClientOrderSerializer
     permission_classes = [IsAuthenticated,]
+    queryset = ClientOrder.objects.all()
 
     def get(self,request,pk):
         user = request.user
@@ -102,6 +103,7 @@ class NotifyMe(GenericAPIView):
 
     serializer_class = NotifySerializer
     permission_classes = [IsAuthenticated,]
+    queryset = Notify.objects.all()
 
     def get(self,request,pk):
         user = request.user
@@ -144,18 +146,18 @@ class FinalOrder(GenericAPIView):
         'MID': env('MERCHANTID'),
         'ORDER_ID': str(transaction.id),
         'TXN_AMOUNT': str(final_payment),
-        'CUST_ID': str(user.id),
+        'CUST_ID': str(user.contact),
         'INDUSTRY_TYPE_ID': 'Retail',
         'WEBSITE': 'WEBSTAGING',
         'CHANNEL_ID': 'WEB',
-        'CALLBACK_URL': 'http://127.0.0.1:8000/product/handlepayment/',
+        'CALLBACK_URL': 'http://buyonic.herokuapp.com/product/handlepayment/',
     }
-        param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict, env('MERCHANTKEY'))#
+        param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict,env('MERCHANTKEY'))
         #return render(request,'checkout.html', context = param_dict)
-        return Response()
+        return Response(param_dict)
 
 @api_view(['POST'])
-@permission_classes((IsAuthenticated, ))
+#@permission_classes((IsAuthenticated, ))
 def handlepayment(request):
     user = request.user
     checksum = ""
@@ -169,7 +171,8 @@ def handlepayment(request):
             checksum = form[i]
 
         if i == 'ORDERID':
-            trans = Transaction.objects.get(id = id)
+            trans = Transaction.objects.get(id = int(form[i]))
+            trans.delete()
 ###
     verify = Checksum.verify_checksum(response_dict,env('MERCHANTKEY'), checksum)
 
