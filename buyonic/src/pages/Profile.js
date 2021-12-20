@@ -154,15 +154,15 @@ export const Profile = () => {
             </div>
           </div>
           <div className='w-full bg-gray-900 flex flex-col items-center rounded-lg shadow-lg'>
-            <Link to='/my-cart' className='w-full px-6 py-4 flex items-center space-x-4 border-b-2 border-gray-800'>
+            <Link to='my-cart' className='w-full px-6 py-4 flex items-center space-x-4 border-b-2 border-gray-800'>
               <ShoppingCartIcon />
               <h1>My Cart</h1>
             </Link>
-            <Link to='/wishlist' className='w-full px-6 py-4 flex items-center space-x-4 border-b-2 border-gray-800'>
+            <Link to='wish-list' className='w-full px-6 py-4 flex items-center space-x-4 border-b-2 border-gray-800'>
               <FavoriteIcon />
               <h1>My Wishlist</h1>
             </Link>
-            <Link to='/order-history' className='w-full px-6 py-4 flex items-center space-x-4 border-b-2 border-gray-800'>
+            <Link to='order-history' className='w-full px-6 py-4 flex items-center space-x-4 border-b-2 border-gray-800'>
               <AccessTimeIcon />
               <h1>Order History</h1>
             </Link>
