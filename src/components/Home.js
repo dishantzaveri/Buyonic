@@ -174,7 +174,7 @@ const Home = ({navigation, route}) => {
         <View style={styles.action}>
        
     
-       <TouchableOpacity style={styles.commandButton} onPress={() => { navigation.navigate('ProductsList' )}}>
+       <TouchableOpacity style={styles.commandButton} onPress={() => { navigation.navigate('splash' )}}>
           <Text style={styles.panelButtonTitle}>Products</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.commandButton} onPress={handleRequest.bind(this)}>

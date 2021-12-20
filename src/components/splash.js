@@ -7,10 +7,11 @@ import {
   Image,
   Dimensions
 } from 'react-native'
+import Login from './Login'
 import {
     COLOR_PINK, COLOR_PINK_LIGHT, 
     COLOR_FACEBOOK, COLOR_PINK_MEDIUM} 
-from '../components/myColors'
+from './myColors'
 var {height, width} = Dimensions.get('window')
 export default class Splash extends Component {
     static navigationOptions = {
@@ -26,12 +27,14 @@ export default class Splash extends Component {
             //animations by sequence
             Animated.timing(this.state.logoOpacity,{
                 toValue: 1,                  
-                duration: 1500,              
+                duration: 1500, 
+                useNativeDriver: false          
             }),
             //Animate Text ?
             Animated.timing(this.state.titleMarginTop, {
                 toValue: 10,
-                duration: 1000, //1000 miliseconds = 1 second
+                duration: 1000,
+                useNativeDriver: false  //1000 miliseconds = 1 second
             })
         ]).start(() => {
             //End of animations
@@ -42,7 +45,7 @@ export default class Splash extends Component {
     render() {
         return <View style={styles.container}>
             <Animated.Image source={require('./group.png')} 
-                style={{...styles.logo, opacity: this.state.logoOpacity}}>                
+                style={{...styles.logo, opacity: this.state.logoOpacity}} >                
             </Animated.Image>
             <Animated.Text style={{...styles.title, 
                                 marginTop:this.state.titleMarginTop}}>

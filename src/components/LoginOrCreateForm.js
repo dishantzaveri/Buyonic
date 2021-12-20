@@ -11,7 +11,6 @@ class LoginOrCreateForm extends Component {
     email: '',
     password: '',
     name: '',
-    address:'',
   }
 
   onemailChange(text) {
@@ -26,9 +25,9 @@ class LoginOrCreateForm extends Component {
     this.setState({ name: text });
   }
 
-  onaddressChange(text) {
-    this.setState({ address: text });
-  }
+  // onaddressChange(text) {
+  //   this.setState({ address: text });
+  // }
 
 
   handleRequest() {
@@ -38,10 +37,10 @@ class LoginOrCreateForm extends Component {
     if (this.props.create) {
       payload.name = this.state.name;
     }
-    if (this.props.create) {
-      payload.address = this.state.address;
+    // if (this.props.create) {
+    //   payload.address = this.state.address;
      
-    }
+    // }
     console.log(payload);
     
     axios
