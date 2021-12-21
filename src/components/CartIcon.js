@@ -19,7 +19,7 @@ export function CartIcon({navigation}) {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 8,
-    backgroundColor: 'black',
+    backgroundColor: 'yellow',
     height: 45,
     padding: 12,
     borderRadius:  10,
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: 'white',
+    color: 'black',
     fontWeight: 'bold',
   },
 });

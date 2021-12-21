@@ -194,15 +194,27 @@ const Home = ({navigation, route}) => {
                 <View style={{ marginTop: 20 }}>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("./cake-102.jpg")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("../assets/1.png")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("./headset-100.jpg")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("../assets/2.png")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("./car-101.jpg")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("../assets/3.png")} style={styles.image} resizeMode="cover"></Image>
                         </View>
+                        <View style={styles.mediaImageContainer}>
+                            <Image source={require("../assets/4.png")} style={styles.image} resizeMode="cover"></Image>
+                        </View>
+                        <View style={styles.mediaImageContainer}>
+                            <Image source={require("../assets/5.png")} style={styles.image} resizeMode="cover"></Image>
+                        </View>
+                       
+                        <View>
+                        
+                </View>
+                
                     </ScrollView>
+                 
                    
                 </View>
             
@@ -216,6 +228,7 @@ const Home = ({navigation, route}) => {
           <Text style={styles.panelButtonTitle}>Logout</Text>
         </TouchableOpacity>
     </View> 
+    
             </ScrollView>
         </SafeAreaView>
     </View>

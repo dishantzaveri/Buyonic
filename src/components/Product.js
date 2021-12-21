@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, Image, View, StyleSheet, TouchableOpacity} from 'react-native';
-import Fontisto from 'react-native-vector-icons/Fontisto';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export function Product({name, cost, photo, onPress}) {
 
@@ -25,7 +25,6 @@ export function Product({name, cost, photo, onPress}) {
         <TouchableOpacity style={styles.name} onPress={()=>{
                   // addToWishListHandler(newBook);
                 }}>
-              <Fontisto name="heart" size={33} color="#FF543C" style={{marginLeft:10}} />
               </TouchableOpacity>
         </View>
       </View>
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    shadowColor: 'black',
+    shadowColor: 'white',
     shadowOffset: {
       height: 10,
       width: 10,

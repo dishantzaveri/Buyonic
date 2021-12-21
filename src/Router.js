@@ -1,21 +1,15 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import { StyleSheet, StatusBar } from 'react-native';
+
 import Login from './components/Login';
 import Register from './components/Register';
-import Home from './components/Home2';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createStackNavigator } from '@react-navigation/stack';
-import { ProductsList } from './components/ProductsList.js';
-import { ProductDetails } from './components/ProductDetails.js';
-import { Cart } from './components/Cart.js';
-import { CartIcon } from './components/CartIcon.js';
-import { CartProvider } from './CartContext.js';
+
 import Home2 from './components/Home2';
 
 const Stack = createNativeStackNavigator();
 
-// const Stack = createStackNavigator();
 const RouterComponent = () => { 
  
   return (

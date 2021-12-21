@@ -4,7 +4,6 @@ import Router from './src/Router';
 import { baseURL } from './src/config';
 import { createStackNavigator } from '@react-navigation/stack';
 import { View, Text, StyleSheet } from 'react-native';;
-const Stack = createStackNavigator();
 const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 25

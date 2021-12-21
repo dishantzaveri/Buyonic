@@ -18,8 +18,6 @@ export function ProductsList ({navigation}) {
     );
   }
 
-
-
   const [products, setProducts] = useState([]);
   
   useEffect(() => {

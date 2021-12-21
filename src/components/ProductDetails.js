@@ -39,23 +39,23 @@ export function ProductDetails({route}) {
                       style={styles.fitImage}
                   />
                   <View style={styles.infoBox}>
-                      <Text>Product </Text>
+                      <Text style={styles.propText}>Product </Text>
                       <Text style={styles.propText}>{product.name}</Text>
                   </View>
                  
                   <View style={styles.infoBox}>
-                      <Text>Manufacture State</Text>
+                      <Text style={styles.propText}>Manufacture State</Text>
                       <Text style={styles.propText}>{product.production_state}</Text>
                   </View>
                   <View style={styles.infoBox}>
-                      <Text>Price</Text>
+                      <Text style={styles.propText}>Price</Text>
                       <Text style={styles.propText}>${product.cost}</Text>
                   </View>
-                 <View style={styles.rating}>
-                   <View style={{...styles.infoBox}}>   
-                     <Text>Description</Text>
-                      <Text>{product.description}</Text>
+                  <View style={{...styles.infoBox}}>   
+                     <Text style={styles.propText}>Description</Text>
+                      <Text style={styles.propText} >{product.description}</Text>
                    </View>
+                 <View style={styles.rating}>
                  <Rating
                  
                   startingValue={Math.floor(parseInt(product.rating))}
@@ -79,14 +79,13 @@ export function ProductDetails({route}) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: 'white',
     borderRadius: 16,
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    shadowColor: 'black',
+    shadowColor: 'white',
     shadowOffset: {
-      height: 0,
-      width: 0,
+      height: 6,
+      width: 6,
     },
     elevation: 1,
     marginVertical: 20,
@@ -94,6 +93,8 @@ const styles = StyleSheet.create({
   main: {
     flex : 1,
     padding : 10,
+    backgroundColor: 'black',
+    color:'white'
 },
 rating : {
     marginTop:10,
@@ -101,10 +102,11 @@ rating : {
 },
 infoBox: {
    flexDirection:"row", 
-   justifyContent:"space-between", borderColor:"gray",
+   justifyContent:"space-between", borderColor:"white",
    borderWidth:1,
     padding:10,
     marginTop:15,
+    color:'white'
         },
 fitImage: {
     borderRadius: 5,
@@ -123,6 +125,7 @@ fitImage: {
   propText: {
     fontFamily : "halfmoon_bold",
     fontSize : 15,
+    color:'white'
   },
   image: {
     height: 300,
@@ -130,6 +133,7 @@ fitImage: {
   },
   infoContainer: {
     padding: 16,
+    color:'white'
   },
   name: {
     fontSize: 22,
@@ -143,7 +147,7 @@ fitImage: {
   description: {
     fontSize: 16,
     fontWeight: '400',
-    color: '#787878',
+    color: 'white',
 
   },
   production_state: {
