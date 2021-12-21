@@ -7,7 +7,7 @@ const PRODUCTS = [
         cost: 150,
         description: "1 metre",
         stock_status: true,
-        trend: 11,
+        rating: 1,
         production_state: "Maharashtra"
        
     },
@@ -18,7 +18,7 @@ const PRODUCTS = [
         cost: 150,
         description: "1 metre",
         stock_status: true,
-        trend: 40,
+        rating: 4,
         production_state: "Delhi"
     },
     {
@@ -30,7 +30,7 @@ const PRODUCTS = [
         stock_status: true,
        
         photo: "https://buyonic.herokuapp.com/media/Screenshot_78.png",
-        trend: 50,
+        rating: 5,
         production_state: "Delhi"
     },
     {
@@ -42,7 +42,7 @@ const PRODUCTS = [
         stock_status: true,
         
         photo: "https://buyonic.herokuapp.com/media/Screenshot_80.png",
-        trend: 40,
+        rating: 4,
         production_state: "Delhi"
     },
     {
@@ -53,7 +53,7 @@ const PRODUCTS = [
         stock_status: true,
         created_on: "2021-12-20T20:13:11.610433Z",
         photo: "https://buyonic.herokuapp.com/media/Screenshot_79.png",
-        trend: 32,
+        rating: 3,
         production_state: "Delhi"
     },
     {
@@ -64,7 +64,7 @@ const PRODUCTS = [
         stock_status: true,
         created_on: "2021-12-20T19:56:52.032325Z",
         photo: "https://buyonic.herokuapp.com/media/Screenshot_73.png",
-        trend: 30,
+        rating: 3,
         production_state: "Uttar Pradesh"
     },
     {
@@ -76,7 +76,7 @@ const PRODUCTS = [
         stock_status: true,
         created_on: "2021-12-20T19:39:25.678280Z",
         photo: "https://buyonic.herokuapp.com/media/Screenshot_71.png",
-        trend: 20,
+        rating: 2,
         production_state: "Punjab"
     },
     {
@@ -88,7 +88,7 @@ const PRODUCTS = [
         stock_status: true,
         created_on: "2021-12-20T20:02:24.100293Z",
         photo: "https://buyonic.herokuapp.com/media/Screenshot_76.png",
-        trend: 20,
+        rating: 2,
         production_state: "Uttar Pradesh"
     },
     {
@@ -100,7 +100,7 @@ const PRODUCTS = [
         stock_status: true,
         created_on: "2021-12-20T20:17:53.160673Z",
         photo: "https://buyonic.herokuapp.com/media/Screenshot_81.png",
-        trend: 20,
+        rating: 2,
         production_state: "Haryana"
     },
     {
@@ -112,7 +112,7 @@ const PRODUCTS = [
         stock_status: true,
         
         photo: "https://buyonic.herokuapp.com/media/Screenshot_75.png",
-        trend: 15,
+        rating: 1,
         production_state: "Uttar Pradesh"
     },
     {
@@ -124,7 +124,7 @@ const PRODUCTS = [
         stock_status: true,
         
         photo: "https://buyonic.herokuapp.com/media/Screenshot_68.png",
-        trend: 11,
+        rating: 1,
         production_state: "Maharashtra"
     },
     {
@@ -136,7 +136,7 @@ const PRODUCTS = [
         stock_status: true,
         created_on: "2021-12-20T19:57:54.400766Z",
         photo: "https://buyonic.herokuapp.com/media/Screenshot_74.png",
-        trend: 11,
+        rating: 1,
         production_state: "Rajasthan"
     },
     {
@@ -148,7 +148,7 @@ const PRODUCTS = [
         stock_status: true,
         created_on: "2021-12-19T05:41:46.077969Z",
         photo: "https://buyonic.herokuapp.com/media/Screenshot_69.png",
-        trend: 8,
+        rating: 5,
         production_state: "Maharashtra"
     },
     {
@@ -160,7 +160,7 @@ const PRODUCTS = [
         stock_status: true,
         
         photo: "https://buyonic.herokuapp.com/media/Screenshot_70.png",
-        trend: 7,
+        rating: 5,
         production_state: "Punjab"
     },
     {
@@ -172,7 +172,7 @@ const PRODUCTS = [
         stock_status: true,
         created_on: "2021-12-20T19:40:17.728524Z",
         photo: "https://buyonic.herokuapp.com/media/Screenshot_72.png",
-        trend: 6,
+        rating: 2,
         production_state: "Uttar Pradesh"
     },
     {
@@ -184,7 +184,7 @@ const PRODUCTS = [
         stock_status: true,
        
         photo: "https://buyonic.herokuapp.com/media/Screenshot_84.png",
-        trend: 6,
+        rating: 4,
         production_state: "Maharashtra"
     },
     {
@@ -196,7 +196,7 @@ const PRODUCTS = [
         stock_status: true,
         created_on: "2021-12-20T07:42:16.969669Z",
         photo: "https://buyonic.herokuapp.com/media/Screenshot_67.png",
-        trend: 0,
+        rating: 0,
         production_state: "Haryana"
     },
     {
@@ -208,7 +208,7 @@ const PRODUCTS = [
         stock_status: true,
         created_on: "2021-12-20T20:05:32.560586Z",
         photo: "https://buyonic.herokuapp.com/media/Screenshot_77_8cnRbja.png",
-        trend: 0,
+        rating: 0,
         production_state: "Rajasthan"
     },
     {
@@ -220,7 +220,7 @@ const PRODUCTS = [
         stock_status: true,
         created_on: "2021-12-20T20:18:37.513937Z",
         photo: "https://buyonic.herokuapp.com/media/Screenshot_82.png",
-        trend: 0,
+        rating: 4,
         production_state: "Rajasthan"
     },
     {
@@ -231,7 +231,7 @@ const PRODUCTS = [
         stock_status: true,
        
         photo: "https://buyonic.herokuapp.com/media/Screenshot_83.png",
-        trend: 0,
+        rating: 3,
         production_state: "Maharashtra"
     }
 ];

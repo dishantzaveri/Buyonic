@@ -26,7 +26,7 @@
   return NO;
 }
 
-- (void)testRendersWelcomeScreen
+- (void)tesratingersWelcomeScreen
 {
   UIViewController *vc = [[[RCTSharedApplication() delegate] window] rootViewController];
   NSDate *date = [NSDate dateWithTimeIntervalSinceNow:TIMEOUT_SECONDS];

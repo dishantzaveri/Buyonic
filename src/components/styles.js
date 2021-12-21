@@ -50,7 +50,8 @@ export const Price = styled.Text`
 `;
 
 export const Button = styled.TouchableOpacity`
-  height: 45px;
+  height: 60px;
+  width:180px;
   margin-top: 20;
   background-color:#37BEA9;
   align-items: center;

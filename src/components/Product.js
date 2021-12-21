@@ -1,7 +1,15 @@
 import React from 'react';
 import {Text, Image, View, StyleSheet, TouchableOpacity} from 'react-native';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 
 export function Product({name, cost, photo, onPress}) {
+
+  // addToWishListHandler = (book)=>{
+  //   props.addToWishList(book);
+  //   getItemsCount();
+  //   }
+
+
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
       <Image
@@ -9,8 +17,17 @@ export function Product({name, cost, photo, onPress}) {
         source={{uri:photo }}
       />
       <View style={styles.infoContainer}>
+        <View>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.cost}>$ {cost}</Text>
+        </View>
+        <View>
+        <TouchableOpacity style={styles.name} onPress={()=>{
+                  // addToWishListHandler(newBook);
+                }}>
+              <Fontisto name="heart" size={33} color="#FF543C" style={{marginLeft:10}} />
+              </TouchableOpacity>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -40,6 +57,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     padding: 16,
+    flexDirection:'row'
   },
   name: {
     fontSize: 17,

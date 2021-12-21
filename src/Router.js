@@ -55,27 +55,7 @@ const RouterComponent = () => {
             options={{headerShown: false}}
             initial
           />
-          {/* <Stack.Navigator>
         
-              <Stack.Screen name='Products' component={ProductsList} 
-              options={({ navigation }) => ({
-                title: 'Products',
-                headerTitleStyle: styles.headerTitle,
-                headerRight: () => <CartIcon navigation={navigation}/>
-              })}/>
-              <Stack.Screen name='ProductDetails' component={ProductDetails} 
-              options={({ navigation }) => ({
-                title: 'Product details',
-                headerTitleStyle: styles.headerTitle,
-                headerRight: () => <CartIcon navigation={navigation}/>,
-              })} />
-              <Stack.Screen name='Cart' component={Cart} 
-              options={({ navigation }) => ({
-                title: 'My cart',
-                headerTitleStyle: styles.headerTitle,
-                headerRight: () => <CartIcon navigation={navigation}/>,
-              })} />
-            </Stack.Navigator> */}
                  
         </Stack>
      

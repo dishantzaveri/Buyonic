@@ -1,19 +1,16 @@
 import React, {useEffect, useState, useContext} from 'react';
 import { 
-  StyleSheet
+  StyleSheet,
+    View,
+    Text,
+    ScrollView,
+    Image,
+    TouchableOpacity,
   } from 'react-native';
-
+  import { Rating } from 'react-native-ratings';  
 import { getProduct } from '../services/ProductsService.js';
 import { CartContext } from '../CartContext';
 import {
-  Container,
-  ProductCard,
-  Image,
-  Info,
-  Text,
-  Name,
-  Brand,
-  Price,
   Button,
   ButtonText,
 } from './styles';
@@ -33,41 +30,50 @@ export function ProductDetails({route}) {
   }
   
   return (
-    // <SafeAreaView>
-    //   <ScrollView>
-    //     <Image
-    //       style={styles.image}
-    //       source={{uri:product.image}}
-    //     />
-    //     <View style={styles.infoContainer}>
-    //       <Text style={styles.name}>{product.name}</Text>
-    //       <Text style={styles.price}>$ {product.price}</Text>
-    //       <Text style={styles.description}>{product.description}</Text>   
-    //       <Text style={styles.production_state}>{product.production_state}</Text>
-    //         <Button
-    //         onPress={onAddToCart}
-    //         title="Add to cart"
-    //         />
-    //     </View>
-    //   </ScrollView>
-    // </SafeAreaView>
-    <Container>
-    <ProductCard>
-      <Image source={{ uri: product.photo }} />
-      <Info>
-        <Text>
-          <Name>{product.name}</Name>
-          <Brand>{product.description}</Brand>
-        </Text>
-        <Price>{`$ ${product.cost}`}</Price>
-      </Info>
-      <Button
+
+  <ScrollView>
+             <View style={styles.main}>
+             
+                 <Image
+                  source={{ uri: product.photo }}
+                      style={styles.fitImage}
+                  />
+                  <View style={styles.infoBox}>
+                      <Text>Product </Text>
+                      <Text style={styles.propText}>{product.name}</Text>
+                  </View>
+                 
+                  <View style={styles.infoBox}>
+                      <Text>Manufacture State</Text>
+                      <Text style={styles.propText}>{product.production_state}</Text>
+                  </View>
+                  <View style={styles.infoBox}>
+                      <Text>Price</Text>
+                      <Text style={styles.propText}>${product.cost}</Text>
+                  </View>
+                 <View style={styles.rating}>
+                   <View style={{...styles.infoBox}}>   
+                     <Text>Description</Text>
+                      <Text>{product.description}</Text>
+                   </View>
+                 <Rating
+                 
+                  startingValue={Math.floor(parseInt(product.rating))}
+                      ratingCount={5}
+                      imageSize={40}
+                      showRating
+                  />
+                 </View>
+                <View style={{alignItems:"center"}}>
+                <Button
         onPress={onAddToCart}
       >
         <ButtonText>Add to cart</ButtonText>
       </Button>
-    </ProductCard>
-  </Container>
+                </View>
+              
+             </View>
+             </ScrollView>
   );
 }
 
@@ -84,6 +90,39 @@ const styles = StyleSheet.create({
     },
     elevation: 1,
     marginVertical: 20,
+  },
+  main: {
+    flex : 1,
+    padding : 10,
+},
+rating : {
+    marginTop:10,
+    marginBottom:10
+},
+infoBox: {
+   flexDirection:"row", 
+   justifyContent:"space-between", borderColor:"gray",
+   borderWidth:1,
+    padding:10,
+    marginTop:15,
+        },
+fitImage: {
+    borderRadius: 5,
+    zIndex : -1,
+    resizeMode:"contain",
+    width:"100%",
+    height:430
+  },
+  fitImageWithSize: {
+    height: 100,
+    width: 30,
+  },
+  defaultText:{
+    fontSize : 15,
+  },
+  propText: {
+    fontFamily : "halfmoon_bold",
+    fontSize : 15,
   },
   image: {
     height: 300,

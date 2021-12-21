@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Button, FlatList, StyleSheet,TouchableOpacity,Alert } from 'react-native';
 
 import { CartContext } from '../CartContext';
 
@@ -12,11 +12,37 @@ export function Cart ({navigation}) {
     useEffect(() => {
       setTotal(getTotalPrice());
     });
-    return (
+    return (<View>
        <View style={styles.cartLineTotal}>
           <Text style={[styles.lineLeft, styles.lineTotal]}>Total</Text>
           <Text style={styles.lineRight}>$ {total}</Text>
+          </View>
+          
+          <View>
+          <TouchableOpacity style={{ 
+                justifyContent:"center", 
+                alignItems:"center", 
+                padding:10 ,
+               
+                backgroundColor:"#FF543C",
+                borderRadius:3,
+               
+                marginBottom:20,
+                }}
+                onPress={()=>{
+                  Alert.alert(
+                    "Order Placed!",
+                    "Thanks for Ordering. You will receive your order in 2-4 business days. Cash On Delivery!",
+                    [{text: 'OK', onPress: () => console.log('Order Placed Success! You Have No Item in Your Cart List. ')}]
+                  );
+
+                }}
+                >
+              <Text style={{color:"white", fontWeight:"bold", fontSize:20}}>Order Now</Text>
+              </TouchableOpacity>
        </View>
+       </View>
+       
     );
   }
 
