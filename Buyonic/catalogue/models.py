@@ -17,7 +17,7 @@ class Product(models.Model):
     cost = models.FloatField()
     description = models.TextField(max_length = 100)
     stock_status = models.BooleanField(default = True)
-    created_on = models.DateTimeField(auto_now_add = True)
+    created_on = models.DateField(auto_created=True)
     photo = models.ImageField(blank = True)
     trend = models.IntegerField(default = 0)
     production_state = models.CharField(max_length=25)
@@ -67,7 +67,7 @@ class ManufacturerOrder(models.Model):
 class ClientOrder(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    m_order = models.ForeignKey(ManufacturerOrder, on_delete=models.CASCADE)
+    m_order = models.ForeignKey(ManufacturerOrder, on_delete=models.CASCADE, default=1)
     quantity = models.IntegerField(default = 1)
     total_cost = models.FloatField(default = 0)
     shipping_charge = models.FloatField(default = 50)
