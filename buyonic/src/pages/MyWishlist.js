@@ -41,7 +41,7 @@ export const MyWishlist = () => {
       <Navbar />
       <div className='px-48 py-12'>
         <h1 className='text-gray-200 text-5xl font-semibold pb-8'>My Wishlist</h1>
-        <div className='grid grid-cols-3 justify-center gap-x-16'>
+        <div className='grid grid-cols-3 justify-center gap-16'>
           {productList && productList.map(product => (
             <div className='col-span-1 shadow-lg'>
               <NotifyProduct product={product} key={product.id} />

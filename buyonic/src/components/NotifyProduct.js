@@ -23,8 +23,8 @@ export const NotifyProduct = ({ product }) => {
 
   const deleteFav = () => {
     let config = {
-      method: 'post',
-      url: 'https://buyonic.herokuapp.com/product/order/' + product.id,
+      method: 'delete',
+      url: 'https://buyonic.herokuapp.com/product/notify/' + product.product.id,
       headers: { 
         'Authorization': 'Token ' + token, 
       }
@@ -37,7 +37,7 @@ export const NotifyProduct = ({ product }) => {
     .catch((error) => {
       console.log(error);
     });
-    setShowModal1(false)
+    setShowModal2(false)
   }
 
   const editFav = () => {
@@ -45,8 +45,8 @@ export const NotifyProduct = ({ product }) => {
     data.append('below', price);
 
     let config = {
-      method: 'post',
-      url: 'https://buyonic.herokuapp.com/product/notify/' + product.id,
+      method: 'put',
+      url: 'https://buyonic.herokuapp.com/product/notify/' + product.product.id,
       headers: { 
         'Authorization': 'Token ' + token,
       },
@@ -60,7 +60,7 @@ export const NotifyProduct = ({ product }) => {
     .catch((error) => {
       console.log(error);
     });
-    setShowModal2(false)
+    setShowModal1(false)
   }
 
   return (
@@ -68,7 +68,7 @@ export const NotifyProduct = ({ product }) => {
       {product ? 
         <Card sx={{ width: '100%', background: '#111827', color: 'white' }}>
           <CardActionArea>
-            <Link to={`/details/${product.product.id}`} key={product.id}>
+            <Link to={`/details/${product.product.id}`} key={product.product.id}>
               <div className='bg-gray-500 flex justify-center'>
                 <img 
                   src={product.product.photo && 'https://buyonic.herokuapp.com' + product.product.photo}
