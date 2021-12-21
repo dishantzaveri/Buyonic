@@ -9,7 +9,7 @@ import lightlogo from '../utils/lightlogo.svg'
 import axios from 'axios'
 
 export const Login = () => {
-  const { setToken } = useContext(GlobalContext)
+  const { token, setToken } = useContext(GlobalContext)
   let navigate = useNavigate();
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
@@ -17,6 +17,30 @@ export const Login = () => {
   const [error, setError] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false)
+
+  const sendOtp = token => {
+    let data = new FormData();
+    data.append('', '');
+
+    let config = {
+      method: 'get',
+      url: 'https://buyonic.herokuapp.com/auth/otp/',
+      headers: { 
+        'Authorization': 'Token ' + token, 
+      },
+      data : data
+    };
+
+    axios(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+      navigate('/login/verify')
+    })
+    .catch((error) => {
+      console.log(error);
+      navigate('/home')
+    });
+  }
 
   const login = () => {
 
@@ -40,13 +64,14 @@ export const Login = () => {
       if (remember) {
         localStorage.setItem('token', JSON.stringify(response.data.token))
       }
-      navigate('/home')
+      sendOtp(response.data.token)
     })
     .catch((error) => {
       console.log(error);
       setError(true)
     });
   }
+
   return (
     <div className=''>
       <div className="flex flex-col space-y-4 items-center justify-center dark:bg-gray-800 bg-gray-100 dark:text-gray-200 text-gray-800 w-full min-h-screen">

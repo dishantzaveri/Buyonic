@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext'
 import {
-  Link,
   Outlet,
+  useNavigate,
 } from 'react-router-dom'
 import { Navbar } from '../components/Navbar';
 import { Product } from '../components/Product';
 import axios from 'axios';
 
 export const Home = () => {
+
+  const navigate = useNavigate()
 
   const { token, setProducts } = useContext(GlobalContext)
 
@@ -33,6 +35,12 @@ export const Home = () => {
       console.log(error);
     });
   }
+
+  useEffect(() => {
+    if(token === '' || token === null) {
+      navigate('/')
+    }
+  }, [token])
 
   useEffect(() => {
     getProducts()

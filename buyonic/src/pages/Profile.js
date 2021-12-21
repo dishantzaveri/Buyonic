@@ -158,7 +158,7 @@ export const Profile = () => {
               <ShoppingCartIcon />
               <h1>My Cart</h1>
             </Link>
-            <Link to='wish-list' className='w-full px-6 py-4 flex items-center space-x-4 border-b-2 border-gray-800'>
+            <Link to='my-wishlist' className='w-full px-6 py-4 flex items-center space-x-4 border-b-2 border-gray-800'>
               <FavoriteIcon />
               <h1>My Wishlist</h1>
             </Link>
