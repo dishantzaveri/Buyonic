@@ -73,6 +73,7 @@ Here are the things you can do with our website or we can provide.
 <br /> Backend : https://buyonic.herokuapp.com/auth/register/
 <br /> React Native : https://enemiesofsyntax.postman.co/workspace/Team-Workspace~729da0ee-6451-43fc-8fe2-91704ce25db4/overview
 <br /> Design : https://www.figma.com/file/fAUze9ouR1AZRAZ0nwHSrz/Login-Page-design-(Community)?node-id=0%3A1
+![Screenshot 2022-01-20 at 2 47 41 PM](https://user-images.githubusercontent.com/88030979/150666334-2496df2e-fbf8-4315-8197-e2f21138bd13.png)
 
 <p align="left">
 </p>
