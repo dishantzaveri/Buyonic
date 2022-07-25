@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .text-bounce {
+    @apply text-[#61dafb] animate-bounce;
+  }
+}
